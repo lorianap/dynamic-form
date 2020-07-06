@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Angular CSS -->
+    <link rel="stylesheet" href="https://gitcdn.xyz/cdn/angular/bower-material/v1.1.21/angular-material.css">
+    <link rel="stylesheet" href="form_styles.css">
+	
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK2BOhMMjlhY4JPtV31JncIzCf5cLAazc&libraries=places&callback=initAutocomplete"></script> -->
+  
+  <!-- Angular JS -->
+	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-animate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-aria.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-messages.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+  <script src="https://gitcdn.xyz/cdn/angular/bower-material/v1.1.21/angular-material.js"></script>
+  <script src="form_scripts.js"></script>
+
+
+
+	<title>Form Buttons</title>
+  
+</head>
+
+<body ng-app="myApp">
+
+  <div class="single_page" id="LoanPurpose">
+    <div class="card-header" style="text-align: center;">
+        <h1>How do you plan on using your loan?</h1>
+        <h2>Select the option that works best for you</h2>
+    </div>
+    <div class="card-body" >
+        <form class="form" ng-model="value">
+          <div class="card-btn" ng-controller="repeatController">
+            <a id="{{button.id}}" ng-href="{{button.link}}" class="btn-form" ng-repeat="button in loanPurpose" value="{{button.value}}" ng-click="Value(button)"><img ng-src="{{button.icon}}" width="50"/><br><p class="label">{{button.label}}</p></a>
+          </div>
+      </form>
+    </div>
+  </div>
+ 
+  <div class="single_page" id="Amount">
+    <div class="card-header" style="text-align: center;">
+        <h1>How much would you like to borrow?</h1>
+        <h2>Please select a valid Amount</h2>
+    </div>
+    <div class="card-body" >
+        <form class="form" ng-model="value">
+          <div class="card-btn" ng-controller="repeatController">
+            <a id="{{button.id}}" ng-href="{{button.link}}" class="btn-form slime" ng-repeat="button in loanAmount" value="{{button.value}}" ng-click="Value(button)"><p class="label_s">{{button.label}}</p></a>
+          </div>
+        </form>
+        <div class="text-center">
+          <a href="#LoanPurpose" class="btn-form back" role="button" aria-pressed="true"><p class="label_back">Back</p></a>
+        </div>
+    </div>
+  </div>    
+
+  <div class="single_page" id="Duration">
+    <div class="card-header" style="text-align: center;">
+        <h1>How much would you like to borrow?</h1>
+        <h2>Please select a valid duration</h2>
+    </div>
+    <div class="card-body" >
+        <form class="form" ng-model="value">
+          <div class="card-btn" ng-controller="repeatController">
+            <a id="{{button.id}}" ng-href="{{button.link}}" class="btn-form slime" ng-repeat="button in loanDurationMonths" value="{{button.value}}" ng-click="Value(button)"><p class="label_s">{{button.label}}</p></a>
+          </div>
+        </form>
+        <div class="text-center">
+				  <a href="#Amount" class="btn-form back" role="button" aria-pressed="true"><p class="label_back">Back</p></a>
+        </div>
+    </div>
+  </div>    
+
+  <div class="single_page" id="Personal">
+    <div class="card-header" style="text-align: center;">
+      <h1>Your name?</h1>	
+      <h2>Please select</h2>					
+    </div>
+    <div class="card-body">
+      <form class="form_personal" ng-model="value"> 
+        
+        <div ng-controller="repeatController" ng-app="MyApp">
+          <!-- <label>Your Title<span class="required">*</span></label> -->
+          <md-content layout-padding="">
+            <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Title</label>
+              <md-select ng-model="selectedTitle" md-selected-text="getSelectedText()">
+                <md-optgroup label="titles">
+                  <md-option ng-repeat="title in titles" ng-value="title">{{title}}</md-option>
+                </md-optgroup>
+              </md-select>
+            </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>First name<span class="required">*</span></label>
+                <input ng-model="client.firstName">
+              </md-input-container>
+    
+              <md-input-container class="md-block" flex-gt-sm="">
+                <label>Last Name<span class="required">*</span></label>
+                <input ng-model="client.lastName">
+              </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="">
+              <label>Enter date of birth<span class="required">*</span></label>
+              <md-datepicker ng-model="client.DateOfBirth" aria-label="Enter date"></md-datepicker>
+            </md-input-container>
+          </div> Date: {{client.DateOfBirth | date:fullDate}}
+          </md-content>
+        </div>
+        
+      <!-- Old form model --> <br><hr><br><br><br>        
+        
+      <div class="row"> 
+        <div class="col-sm-6">
+        <label>Your Title<span class="required">*</span></label>
+        <md-select class="form-control" name="title" id="title" ng-model="formData.title" ng-required="true">
+              <md-option value="" selected>Please Select</md-option>
+              <md-option value="mr">Mr</md-option>
+              <md-option value="mrs">Mrs</md-option>
+              <md-option value="miss">Miss</md-option>
+              <md-option value="ms">Ms</md-option>
+        </md-select>
+        <span class="field-validation-error ng-hide" ng-show="!appForm.title.$pristine && (appForm.title.$error.required)">Please select a title</span>              
+        </div>
+        <div class="col-sm-6">
+        <label>First name<span class="required">*</span></label>
+        <input class="form-control" type="text" name="firstName" id="firstName" ng-model="formData.firstName" ng-minlength="2" ng-maxlength="25" ng-pattern="/^[a-zA-Z0-9\s.]{2,25}$/" ng-model-options="{ updateOn: 'blur' }" class="form-control" placeholder="Please enter first name" required>
+        <!-- <span class="field-validation-error ng-hide" ng-show="!appForm.firstName.$pristine && (appForm.firstName.$error.required || appForm.firstName.$error.minlength || appForm.firstName.$error.maxlength || appForm.firstName.$error.pattern)">Please enter between 2 and 25 characters</span> -->
+      </div>
+      <div class="col-sm-6">
+        <label>Last name<span class="required">*</span></label>
+        <input class="form-control" type="text" name="lastName" id="lastName" ng-model="formData.lastName" ng-minlength="2" ng-maxlength="25" ng-pattern="/^[a-zA-Z0-9\s.]{2,25}$/" ng-model-options="{ updateOn: 'blur' }" class="form-control" placeholder="Please enter last name" required>
+        <!-- <span class="field-validation-error ng-hide" ng-show="!appForm.lastName.$pristine && (appForm.lastName.$error.required || appForm.lastName.$error.minlength || appForm.lastName.$error.maxlength || appForm.lastName.$error.pattern)">Please enter between 2 and 25 characters</span> -->
+      </div>  
+
+        <md-input-container>
+          <label>DOB<span class="required">*</span></label>
+          <md-datepicker name="dob" id="dob" ng-model="formData.dob" md-placeholder="Enter date" md-min-date="formData.minDate" md-max-date="formData.maxDate"></md-datepicker>
+  
+          <div ng-messages="myForm.dateField.$error">
+            <div ng-message="valid">Use a valid date format</div>
+            <div ng-message="mindate">Choose a date on or after {{ctrl.minDate | date:"shortDate"}}</div>
+            <div ng-message="maxdate">Choose a date on or before {{ctrl.maxDate | date:"shortDate"}}</div>
+          </div>
+        </md-input-container>
+      </form> 
+              Date: {{formData.dob | date:fullDate}}
+      <div class="text-center">
+				<a href="#Duration" class="btn-form back" role="button" aria-pressed="true"><p class="label_back">Back</p></a>
+      </div>
+    </div> 
+    </div>
+  </div>
+    
+</body>
+
+</html>
